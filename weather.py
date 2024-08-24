@@ -119,7 +119,4 @@ async def contact_admin():
 
 @app.get("/api/v1/obhavo/{place}")
 async def weather(place: str, token: str | int):
-    if token == "j45j4-35n41wqa-9i6u0iuojplu-12e5wdf632r-r8y3wrue9o!@#$%^&*(Y7hj3qwi)"
-        return UzbekistanWeather(place).today()
-    else:
-        return {"message": "token is invalid"}
+    return UzbekistanWeather(place).today()
