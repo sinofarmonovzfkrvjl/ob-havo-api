@@ -118,5 +118,5 @@ async def contact_admin():
     return {"telegram": "https://t.me/@sinofarmonov", "instagram": "https://www.instagram.com/python_dasturlash323"}
 
 @app.get("/api/v1/obhavo/{place}")
-async def weather(place: str, token: str | int):
+async def weather(place: str):
     return UzbekistanWeather(place).today()
