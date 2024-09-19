@@ -120,6 +120,8 @@ class UzbekistanWeather:
             response = requests.get("https://www.ob-havo.com/asia/uzbekistan/surkhondaryo/sherobod?page=today")
         elif self.place.lower() == "sherobod":
             response = requests.get("https://www.ob-havo.com/asia/uzbekistan/surkhondaryo/sherobod?page=today")
+        elif self.place.lower() == "surxondaryo":
+            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/surxondaryo?page=today")
         else:
             raise UzbekistanWeatherNotFoundError("Ob Havo malumoti topilmadi, shahar nomini to'g'ri yozganingiznga ishonch hosil qiling, yoki Weather().help() dan foydalaning")
         todaysoup = BeautifulSoup(response.content, 'html.parser')
