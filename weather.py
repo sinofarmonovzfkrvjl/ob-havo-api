@@ -110,16 +110,6 @@ class UzbekistanWeather:
             response = requests.get("https://www.ob-havo.com/asia/uzbekistan/navoiy/uchquduq?page=today")
         elif self.place.lower() == "urgut":
             response = requests.get("https://www.ob-havo.com/asia/uzbekistan/samarqand/urgut?page=today")
-        elif self.place.lower() == "sherobod":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/surkhondaryo/sherobod?page=today")
-        elif self.place.lower() == "sherobod":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/surkhondaryo/sherobod?page=today")
-        elif self.place.lower() == "sherobod":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/surkhondaryo/sherobod?page=today")
-        elif self.place.lower() == "sherobod":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/surkhondaryo/sherobod?page=today")
-        elif self.place.lower() == "sherobod":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/surkhondaryo/sherobod?page=today")
         elif self.place.lower() == "surxondaryo":
             response = requests.get("https://www.ob-havo.com/asia/uzbekistan/surxondaryo?page=today")
         else:
@@ -193,7 +183,7 @@ async def root():
 
 @app.get("/mavjud-hududlar")
 async def available_places():
-    return "toshkent, andijon, farg'ona, navoiy, samarqand, surxondaryo, buxoro, xorazm, qashqadaryo, jizzax, xiva, guliston, zarafshon, qarshi, namangan, nukus, termiz, urganch"
+    return "toshkent, andijon, farg'ona, navoiy, samarqand, surxondaryo, buxoro, xorazm, qashqadaryo, jizzax, xiva, guliston, zarafshon, qarshi, namangan, nukus, termiz, urganch, angren, asaka, baliqchi bekobod, bog'ot, blung'ur, chiroqchi, dehqonobod, devon, ishtixon, jondor, kitob, kokand, koson, marg'ilon, nurobod, olmaliq, oltiariq, oltinsoy, oqtosh, payariq, qamashiq, qumqo'rg'on, parkent, qo'qon, quva, rishton, romitan, shahrisabz, sherobod, shofirkon, shovot, uchquduq, urgut"
 
 @app.get("/contact-admin")
 async def contact_admin():
