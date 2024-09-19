@@ -86,7 +86,7 @@ class UzbekistanWeather:
             response = requests.get("https://www.ob-havo.com/asia/uzbekistan/tashkent/parkent?page=today")
         elif self.place.lower() == "payariq":
             response = requests.get("https://www.ob-havo.com/asia/uzbekistan/samarqand/payariq?page=today")
-        elif self.place.lower() == "qamashiq":
+        elif self.place.lower() == "qamashi":
             response = requests.get("https://www.ob-havo.com/asia/uzbekistan/qashqadaryo/qamashi?page=today")
         elif self.place.lower() == "qumqo'rg'on":
             response = requests.get("https://www.ob-havo.com/asia/uzbekistan/surxondaryo/kumkurgan?page=today")
@@ -183,7 +183,7 @@ async def root():
 
 @app.get("/mavjud-hududlar")
 async def available_places():
-    return "toshkent, andijon, farg'ona, navoiy, samarqand, surxondaryo, buxoro, xorazm, qashqadaryo, jizzax, xiva, guliston, zarafshon, qarshi, namangan, nukus, termiz, urganch, angren, asaka, baliqchi bekobod, bog'ot, blung'ur, chiroqchi, dehqonobod, devon, ishtixon, jondor, kitob, kokand, koson, marg'ilon, nurobod, olmaliq, oltiariq, oltinsoy, oqtosh, payariq, qamashiq, qumqo'rg'on, parkent, qo'qon, quva, rishton, romitan, shahrisabz, sherobod, shofirkon, shovot, uchquduq, urgut"
+    return "toshkent, andijon, farg'ona, navoiy, samarqand, surxondaryo, buxoro, xorazm, qashqadaryo, jizzax, xiva, guliston, zarafshon, qarshi, namangan, nukus, termiz, urganch, angren, asaka, baliqchi bekobod, bog'ot, blung'ur, chiroqchi, dehqonobod, devon, ishtixon, jondor, kitob, kokand, koson, marg'ilon, nurobod, olmaliq, oltiariq, oltinsoy, oqtosh, payariq, qamashi, qumqo'rg'on, parkent, qo'qon, quva, rishton, romitan, shahrisabz, sherobod, shofirkon, shovot, uchquduq, urgut"
 
 @app.get("/contact-admin")
 async def contact_admin():
