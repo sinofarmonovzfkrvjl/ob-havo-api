@@ -1,7 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 from fastapi import FastAPI
-from fastapi.responses import HTMLResponse
 
 class UzbekistanWeatherNotFoundError(Exception):
     pass
@@ -186,17 +185,17 @@ class UzbekistanWeather:
     
 app = FastAPI()
 
-@app.get("/", include_in_schema=False, response_class=HTMLResponse)
+@app.get("/", include_in_schema=False)
 async def root():
     return "bu o'zbekiston obhavosni ko'rsatuvchi api"
 
-@app.get("/mavjud-hududlar", response_class=HTMLResponse)
+@app.get("/mavjud-hududlar")
 async def available_places():
     return "toshkent, andijon, farg'ona, navoiy, samarqand, surxondaryo, buxoro, xorazm, qashqadaryo, jizzax, xiva, guliston, zarafshon, qarshi, namangan, nukus, termiz, urganch"
 
-@app.get("/contact-admin", response_class=HTMLResponse)
+@app.get("/contact-admin")
 async def contact_admin():
-    return HTMLResponse("""Admin bilan bog'lanish: <a href="https://t.me/@sinofarmonov">telegram</a><br>instagram: <a href="https://www.instagram.com/python_dasturlash323">https://www.instagram.com/python_dasturlash323</a>""")
+    return {"telegram": "https://t.me/@sinofarmonov", "instagram": "https://www.instagram.com/python_dasturlash323"}
 
 @app.get("/api/v1/obhavo/{place}")
 async def weather(place: str):
