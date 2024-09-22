@@ -6,112 +6,113 @@ class UzbekistanWeatherNotFoundError(Exception):
     pass
 
 class UzbekistanWeather:
-    def __init__(self, place: str):
+    def __init__(self, place: str, day: str | None):
         self.place = place
+        self.day = day
 
     def today(self):
         if self.place.lower() == "toshkent":
-            response = requests.get(f"https://www.ob-havo.com/asia/uzbekistan/tashkent?page=today")
+            response = requests.get(f"https://www.ob-havo.com/asia/uzbekistan/tashkent?page={self.day}")
         elif self.place.lower() == "andijon":
-            response = requests.get(f"https://www.ob-havo.com/asia/uzbekistan/andijan?page=today")
+            response = requests.get(f"https://www.ob-havo.com/asia/uzbekistan/andijan?page={self.day}")
         elif self.place.lower() == "buxoro":
-            response = requests.get(f"https://www.ob-havo.com/asia/uzbekistan/bukhara?page=today")
+            response = requests.get(f"https://www.ob-havo.com/asia/uzbekistan/bukhara?page={self.day}")
         elif self.place.lower() == "guliston":
-            response = requests.get(f"https://www.ob-havo.com/asia/uzbekistan/sirdaryo/guliston?page=today")
+            response = requests.get(f"https://www.ob-havo.com/asia/uzbekistan/sirdaryo/guliston?page={self.day}")
         elif self.place.lower() == "jizzax":
-            response = requests.get(f"https://www.ob-havo.com/asia/uzbekistan/jizzakh?page=today")
+            response = requests.get(f"https://www.ob-havo.com/asia/uzbekistan/jizzakh?page={self.day}")
         elif self.place.lower() == "zarafshon":
-            response = requests.get(f"https://www.ob-havo.com/asia/uzbekistan/navoiy/zarafshon?page=today")
+            response = requests.get(f"https://www.ob-havo.com/asia/uzbekistan/navoiy/zarafshon?page={self.day}")
         elif self.place.lower() == "qarshi":
-            response = requests.get(f"https://www.ob-havo.com/asia/uzbekistan/qashqadaryo/qarshi?page=today")
+            response = requests.get(f"https://www.ob-havo.com/asia/uzbekistan/qashqadaryo/qarshi?page={self.day}")
         elif self.place.lower() == "navoiy":
-            response = requests.get(f"https://www.ob-havo.com/asia/uzbekistan/navoiy?page=today")
+            response = requests.get(f"https://www.ob-havo.com/asia/uzbekistan/navoiy?page={self.day}")
         elif self.place.lower() == "namangan":
-            response = requests.get(f"https://www.ob-havo.com/asia/uzbekistan/namangan?page=today")
+            response = requests.get(f"https://www.ob-havo.com/asia/uzbekistan/namangan?page={self.day}")
         elif self.place.lower() == "nukus":
-            response = requests.get(f"https://www.ob-havo.com/asia/uzbekistan/karakalpakstan/nukus?page=today")
+            response = requests.get(f"https://www.ob-havo.com/asia/uzbekistan/karakalpakstan/nukus?page={self.day}")
         elif self.place.lower() == "samarqand":
-            response = requests.get(f"https://www.ob-havo.com/asia/uzbekistan/samarqand/samarkand?page=today")
+            response = requests.get(f"https://www.ob-havo.com/asia/uzbekistan/samarqand/samarkand?page={self.day}")
         elif self.place.lower() == "termiz":
-            response = requests.get(f"https://www.ob-havo.com/asia/uzbekistan/surxondaryo/termez?page=today")
+            response = requests.get(f"https://www.ob-havo.com/asia/uzbekistan/surxondaryo/termez?page={self.day}")
         elif self.place.lower() == "urganch":
-            response = requests.get(f"https://www.ob-havo.com/asia/uzbekistan/xorazm/urgench?page=today")
+            response = requests.get(f"https://www.ob-havo.com/asia/uzbekistan/xorazm/urgench?page={self.day}")
         elif self.place.lower() == "farg'ona":
-            response = requests.get(f"https://www.ob-havo.com/asia/uzbekistan/fergana?page=today")
+            response = requests.get(f"https://www.ob-havo.com/asia/uzbekistan/fergana?page={self.day}")
         elif self.place.lower() == "xiva":
-            response = requests.get(f"https://www.ob-havo.com/asia/uzbekistan/xorazm/xiva?page=today")
+            response = requests.get(f"https://www.ob-havo.com/asia/uzbekistan/xorazm/xiva?page={self.day}")
         elif self.place.lower() == "qashqadaryo":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/qashqadaryo?page=today")
+            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/qashqadaryo?page={self.day}")
         elif self.place.lower() == "angren":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/tashkent/angren?page=today")
+            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/tashkent/angren?page={self.day}")
         elif self.place.lower() == "asaka":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/andijan/asaka?page=today")
+            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/andijan/asaka?page={self.day}")
         elif self.place.lower() == "baliqchi":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/andijan/baliqchi?page=today")
+            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/andijan/baliqchi?page={self.day}")
         elif self.place.lower() == "bekobod":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/tashkent/bekobod?page=today")
+            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/tashkent/bekobod?page={self.day}")
         elif self.place.lower() == "bog'ot":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/xorazm/bogot?page=today")
+            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/xorazm/bogot?page={self.day}")
         elif self.place.lower() == "bulung'ur":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/samarqand/bulungur?page=today")
+            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/samarqand/bulungur?page={self.day}")
         elif self.place.lower() == "chiroqchi":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/qashqadaryo/chiroqchi?page=today")
+            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/qashqadaryo/chiroqchi?page={self.day}")
         elif self.place.lower() == "dehqonobod":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/sirdaryo/dehqonobod?page=today")
+            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/sirdaryo/dehqonobod?page={self.day}")
         elif self.place.lower() == "denov":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/surxondaryo/denov?page=today")
+            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/surxondaryo/denov?page={self.day}")
         elif self.place.lower() == "ishtixon":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/samarqand/ishtixon?page=today")
+            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/samarqand/ishtixon?page={self.day}")
         elif self.place.lower() == "jondor":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/bukhara/jondor?page=today")
+            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/bukhara/jondor?page={self.day}")
         elif self.place.lower() == "kitob":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/qashqadaryo/kitob?page=today")
+            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/qashqadaryo/kitob?page={self.day}")
         elif self.place.lower() == "kokand":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/fergana/kokand?page=today")
+            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/fergana/kokand?page={self.day}")
         elif self.place.lower() == "koson":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/qashqadaryo/koson?page=today")
+            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/qashqadaryo/koson?page={self.day}")
         elif self.place.lower() == "marg'ilon":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/fergana/margilon?page=today")
+            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/fergana/margilon?page={self.day}")
         elif self.place.lower() == "nurobod":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/samarqand/nurobod?page=today")
+            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/samarqand/nurobod?page={self.day}")
         elif self.place.lower() == "olmaliq":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/tashkent/olmaliq?page=today")
+            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/tashkent/olmaliq?page={self.day}")
         elif self.place.lower() == "oltiariq":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/fergana/oltiariq?page=today")
+            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/fergana/oltiariq?page={self.day}")
         elif self.place.lower() == "oltinsoy":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/surxondaryo/oltinsoy?page=today")
+            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/surxondaryo/oltinsoy?page={self.day}")
         elif self.place.lower() == "oqtosh":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/samarqand/oqtosh?page=today")
+            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/samarqand/oqtosh?page={self.day}")
         elif self.place.lower() == "parkent":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/tashkent/parkent?page=today")
+            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/tashkent/parkent?page={self.day}")
         elif self.place.lower() == "payariq":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/samarqand/payariq?page=today")
+            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/samarqand/payariq?page={self.day}")
         elif self.place.lower() == "qamashi":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/qashqadaryo/qamashi?page=today")
+            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/qashqadaryo/qamashi?page={self.day}")
         elif self.place.lower() == "qumqo'rg'on":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/surxondaryo/kumkurgan?page=today")
+            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/surxondaryo/kumkurgan?page={self.day}")
         elif self.place.lower() == "qo'qon":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/fergana/quqon?page=today")
+            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/fergana/quqon?page={self.day}")
         elif self.place.lower() == "quva":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/fergana/quva?page=today")
+            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/fergana/quva?page={self.day}")
         elif self.place.lower() == "rishton":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/fergana/rishton?page=today")
+            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/fergana/rishton?page={self.day}")
         elif self.place.lower() == "romitan":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/bukhara/romitan?page=today")
+            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/bukhara/romitan?page={self.day}")
         elif self.place.lower() == "shahrisabz":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/qashqadaryo/shahrisabz?page=today")
+            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/qashqadaryo/shahrisabz?page={self.day}")
         elif self.place.lower() == "sherobod":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/surkhondaryo/sherobod?page=today")
+            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/surkhondaryo/sherobod?page={self.day}")
         elif self.place.lower() == "shofirkon":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/bukhara/shofirkon?page=today")
+            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/bukhara/shofirkon?page={self.day}")
         elif self.place.lower() == "shovot":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/xorazm/shovot?page=today")
+            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/xorazm/shovot?page={self.day}")
         elif self.place.lower() == "uchquduq":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/navoiy/uchquduq?page=today")
+            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/navoiy/uchquduq?page={self.day}")
         elif self.place.lower() == "urgut":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/samarqand/urgut?page=today")
+            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/samarqand/urgut?page={self.day}")
         elif self.place.lower() == "surxondaryo":
-            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/surxondaryo?page=today")
+            response = requests.get("https://www.ob-havo.com/asia/uzbekistan/surxondaryo?page={self.day}")
         else:
             raise UzbekistanWeatherNotFoundError("Ob Havo malumoti topilmadi, shahar nomini to'g'ri yozganingiznga ishonch hosil qiling, yoki Weather().help() dan foydalaning")
         todaysoup = BeautifulSoup(response.content, 'html.parser')
@@ -190,5 +191,5 @@ async def contact_admin():
     return {"telegram": "https://t.me/@sinofarmonov", "instagram": "https://www.instagram.com/python_dasturlash323"}
 
 @app.get("/api/v1/obhavo/{place}")
-async def weather(place: str):
-    return UzbekistanWeather(place).today()
+async def weather(place: str, day: str):
+    return UzbekistanWeather(place, day=day).today()
