@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from fastapi import FastAPI
+from fastapi.responses import HTMLResponse
 
 class UzbekistanWeatherNotFoundError(Exception):
     pass
@@ -178,14 +179,19 @@ class UzbekistanWeather:
     
 app = FastAPI()
 
-@app.get("/", include_in_schema=False)
+@app.get("/", include_in_schema=False, response_class=HTMLResponse)
 async def root():
-    return "bu o'zbekiston obhavosni ko'rsatuvchi api"
+    return HTMLResponse("""bu o'zbekiston obhavosni ko'rsatuvchi api<br>
+    <a href="/mavjud-hududlar">/mavjud-hududlar</a> - mavjud hududlarni ko'rsatadi<br>
+    <a href="/contact-admin">/contact-admin</a> - adminlarga xabar beradi<br>
+    <h1>foydalanish</h1><br>
+    /api/v1/obhavo/{place}?day={day} - obhavo haqida malumot beradi<br>
+    <h1>Masalan</h1><br>
+    <a href="api/v1/obhavo/toshkent?day=today">/api/v1/obhavo/toshkent?day=today</a> yoki tomorrow""")
 
-@app.get("/mavjud-hududlar")
+@app.get("/mavjud-hududlar", response_class=HTMLResponse)
 async def available_places():
     return "toshkent, andijon, farg'ona, navoiy, samarqand, surxondaryo, buxoro, xorazm, qashqadaryo, jizzax, xiva, guliston, zarafshon, qarshi, namangan, nukus, termiz, urganch, angren, asaka, baliqchi bekobod, bog'ot, blung'ur, chiroqchi, dehqonobod, devon, ishtixon, jondor, kitob, kokand, koson, marg'ilon, nurobod, olmaliq, oltiariq, oltinsoy, oqtosh, payariq, qamashi, qumqo'rg'on, parkent, qo'qon, quva, rishton, romitan, shahrisabz, sherobod, shofirkon, shovot, uchquduq, urgut"
-
 @app.get("/contact-admin")
 async def contact_admin():
     return {"telegram": "https://t.me/@sinofarmonov", "instagram": "https://www.instagram.com/python_dasturlash323"}
