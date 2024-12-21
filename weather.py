@@ -185,17 +185,17 @@ app = FastAPI(
     version="1.0.0",
     docs_url='/',
     redoc_url='/docs',
-    summary="https://t.me/python_dev323"
+    summary="https://t.me/python_dev323",
 )
 
-@app.get("/mavjud-hududlar", response_class=HTMLResponse)
+@app.get("/mavjud-hududlar")
 async def available_places():
-    return "toshkent, andijon, farg'ona, navoiy, samarqand, surxondaryo, buxoro, xorazm, qashqadaryo, jizzax, xiva, guliston, zarafshon, qarshi, namangan, nukus, termiz, urganch, angren, asaka, baliqchi bekobod, bog'ot, blung'ur, chiroqchi, dehqonobod, devon, ishtixon, jondor, kitob, kokand, koson, marg'ilon, nurobod, olmaliq, oltiariq, oltinsoy, oqtosh, payariq, qamashi, qumqo'rg'on, parkent, qo'qon, quva, rishton, romitan, shahrisabz, sherobod, shofirkon, shovot, uchquduq, urgut"
+    return ["toshkent, andijon, farg'ona, navoiy, samarqand, surxondaryo, buxoro, xorazm, qashqadaryo, jizzax, xiva, guliston, zarafshon, qarshi, namangan, nukus, termiz, urganch, angren, asaka, baliqchi bekobod, bog'ot, blung'ur, chiroqchi, dehqonobod, devon, ishtixon, jondor, kitob, kokand, koson, marg'ilon, nurobod, olmaliq, oltiariq, oltinsoy, oqtosh, payariq, qamashi, qumqo'rg'on, parkent, qo'qon, quva, rishton, romitan, shahrisabz, sherobod, shofirkon, shovot, uchquduq, urgut"]
 
 @app.get("/contact-admin")
 async def contact_admin():
     return {"telegram": "https://t.me/@sinofarmonov", "instagram": "https://www.instagram.com/python_dasturlash323"}
 
 @app.get("/api/v1/obhavo/{place}")
-async def weather(place: str, day: list[str] = "today or tomorrow"):
+async def weather(place: str, day: str):
     return UzbekistanWeather(place, day=day).today()
