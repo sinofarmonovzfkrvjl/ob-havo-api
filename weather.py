@@ -201,16 +201,6 @@ app = FastAPI(
     summary="https://t.me/python_dev323"
 )
 
-# @app.get("/", include_in_schema=False, response_class=HTMLResponse)
-# async def root():
-#     return HTMLResponse("""bu o'zbekiston obhavosni ko'rsatuvchi api<br>
-#     <a href="/mavjud-hududlar">/mavjud-hududlar</a> - mavjud hududlarni ko'rsatadi<br>
-#     <a href="/contact-admin">/contact-admin</a> - adminlarga xabar beradi<br>
-#     <h1>foydalanish</h1><br>
-#     /api/v1/obhavo/{place}?day={day} - obhavo haqida malumot beradi<br>
-#     <h1>Masalan</h1><br>
-#     <a href="api/v1/obhavo/toshkent?day=today">/api/v1/obhavo/toshkent?day=today</a> yoki tomorrow""")
-
 @app.get("/mavjud-hududlar", response_class=HTMLResponse)
 async def available_places():
     return "toshkent, andijon, farg'ona, navoiy, samarqand, surxondaryo, buxoro, xorazm, qashqadaryo, jizzax, xiva, guliston, zarafshon, qarshi, namangan, nukus, termiz, urganch, angren, asaka, baliqchi bekobod, bog'ot, blung'ur, chiroqchi, dehqonobod, devon, ishtixon, jondor, kitob, kokand, koson, marg'ilon, nurobod, olmaliq, oltiariq, oltinsoy, oqtosh, payariq, qamashi, qumqo'rg'on, parkent, qo'qon, quva, rishton, romitan, shahrisabz, sherobod, shofirkon, shovot, uchquduq, urgut"
