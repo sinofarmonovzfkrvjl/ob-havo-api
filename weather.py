@@ -4,19 +4,6 @@ from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 from typing import Optional
-import asyncio
-from enum import Enum
-
-class WeatherAPI(BaseModel):
-    city_name: str
-
-    async def get(self):
-        url = "https://www.google.com/search?q=" + self.city_name + " weather"
-        response = requests.get(url)
-        soup = BeautifulSoup(response.text, "html.parser")
-        # weather = soup.find(id="wob_tm")
-        return response.text#{"weather": weather}
-         
 
 class UzbekistanWeatherNotFoundError(Exception):
     pass
