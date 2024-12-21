@@ -2,6 +2,21 @@ import requests
 from bs4 import BeautifulSoup
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
+from pydantic import BaseModel
+from typing import Optional
+import asyncio
+from enum import Enum
+
+class WeatherAPI(BaseModel):
+    city_name: str
+
+    async def get(self):
+        url = "https://www.google.com/search?q=" + self.city_name + " weather"
+        response = requests.get(url)
+        soup = BeautifulSoup(response.text, "html.parser")
+        # weather = soup.find(id="wob_tm")
+        return response.text#{"weather": weather}
+         
 
 class UzbekistanWeatherNotFoundError(Exception):
     pass
@@ -177,25 +192,33 @@ class UzbekistanWeather:
                                             "yomg'ir yog'ish ehtimoli": f"{necessary_things[15].text}%"}}},
                     {"kiyimlarga oid tavfsiyalar": [clothe.text for clothe in recommended_clothes]}]}]
     
-app = FastAPI()
+app = FastAPI(
+    title="Uzbekistan Weather API",
+    description="Uzbekistan Weather API",
+    version="1.0.0",
+    docs_url='/',
+    redoc_url='/docs',
+    summary="https://t.me/python_dev323"
+)
 
-@app.get("/", include_in_schema=False, response_class=HTMLResponse)
-async def root():
-    return HTMLResponse("""bu o'zbekiston obhavosni ko'rsatuvchi api<br>
-    <a href="/mavjud-hududlar">/mavjud-hududlar</a> - mavjud hududlarni ko'rsatadi<br>
-    <a href="/contact-admin">/contact-admin</a> - adminlarga xabar beradi<br>
-    <h1>foydalanish</h1><br>
-    /api/v1/obhavo/{place}?day={day} - obhavo haqida malumot beradi<br>
-    <h1>Masalan</h1><br>
-    <a href="api/v1/obhavo/toshkent?day=today">/api/v1/obhavo/toshkent?day=today</a> yoki tomorrow""")
+# @app.get("/", include_in_schema=False, response_class=HTMLResponse)
+# async def root():
+#     return HTMLResponse("""bu o'zbekiston obhavosni ko'rsatuvchi api<br>
+#     <a href="/mavjud-hududlar">/mavjud-hududlar</a> - mavjud hududlarni ko'rsatadi<br>
+#     <a href="/contact-admin">/contact-admin</a> - adminlarga xabar beradi<br>
+#     <h1>foydalanish</h1><br>
+#     /api/v1/obhavo/{place}?day={day} - obhavo haqida malumot beradi<br>
+#     <h1>Masalan</h1><br>
+#     <a href="api/v1/obhavo/toshkent?day=today">/api/v1/obhavo/toshkent?day=today</a> yoki tomorrow""")
 
 @app.get("/mavjud-hududlar", response_class=HTMLResponse)
 async def available_places():
     return "toshkent, andijon, farg'ona, navoiy, samarqand, surxondaryo, buxoro, xorazm, qashqadaryo, jizzax, xiva, guliston, zarafshon, qarshi, namangan, nukus, termiz, urganch, angren, asaka, baliqchi bekobod, bog'ot, blung'ur, chiroqchi, dehqonobod, devon, ishtixon, jondor, kitob, kokand, koson, marg'ilon, nurobod, olmaliq, oltiariq, oltinsoy, oqtosh, payariq, qamashi, qumqo'rg'on, parkent, qo'qon, quva, rishton, romitan, shahrisabz, sherobod, shofirkon, shovot, uchquduq, urgut"
+
 @app.get("/contact-admin")
 async def contact_admin():
     return {"telegram": "https://t.me/@sinofarmonov", "instagram": "https://www.instagram.com/python_dasturlash323"}
 
 @app.get("/api/v1/obhavo/{place}")
-async def weather(place: str, day: str):
+async def weather(place: str, day: list[str] = "today or tomorrow"):
     return UzbekistanWeather(place, day=day).today()
